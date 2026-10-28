@@ -1,38 +1,45 @@
 <script lang="ts">
   import reports from '#lib/data/reports-4471.json';
   import notes from '#lib/data/desk-notes.json';
-  import { PROBLEM_LABEL, problemsFor } from '#lib/kb/problems.ts';
+  import { groupByCause, readAs, uniqueById, type Report } from '#lib/kb/causes';
   import { tenantOf } from '#lib/kb/locales';
-  import type { Report } from '#lib/kb/causes';
 
   let { ticket }: { ticket: number } = $props();
 
-  const rows = $derived(problemsFor(reports as Report[], ticket, tenantOf, notes.oneDayMove));
-  const total = $derived(rows.reduce((n, row) => n + row.reports.length, 0));
+  const merged = $derived(uniqueById(reports as Report[]).filter((r) => r.mergedInto === ticket));
+  const groups = $derived(groupByCause(merged, tenantOf));
 </script>
 
 <p class="sum">
-  <strong>{total}</strong> reports in #{ticket} ·
-  <strong>{rows.length}</strong>
-  {rows.length === 1 ? 'problem' : 'problems'}
+  <strong>{merged.length}</strong> reports in #{ticket} ·
+  <strong>{groups.length}</strong>
+  {groups.length === 1 ? 'cause' : 'causes'}
 </p>
 
 <table>
   <thead>
-    <tr><th>problem</th><th>reports</th><th>tenants</th><th>seen</th></tr>
+    <tr><th>cause</th><th>reports</th><th>tenants</th><th>seen</th></tr>
   </thead>
   <tbody>
-    {#each rows as row (row.id)}
+    {#each groups as g (g.cause)}
       <tr>
-        <td><code>{row.id}</code> {PROBLEM_LABEL[row.id]}</td>
-        <td>{row.reports.length}</td>
-        <td>{row.tenants}</td>
-        <td>{row.firstSeen} → {row.lastSeen}</td>
+        <td><code>{g.cause}</code></td>
+        <td>{g.reports.length}</td>
+        <td>{g.tenants}</td>
+        <td>{g.firstSeen} → {g.lastSeen}</td>
       </tr>
     {/each}
   </tbody>
 </table>
 
+{#each groups as g (g.cause)}
+  {@const moved = readAs(g, notes.oneDayMove)}
+  {#if moved}
+    <p class="note">{moved} reports read as a one-day move; filed under <code>{g.cause}</code>.</p>
+  {/if}
+{/each}
+
 <style>
   .sum { font-size: 1.1rem; }
+  .note { color: var(--muted); font-size: 0.85em; }
 </style>

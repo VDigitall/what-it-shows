@@ -25,6 +25,7 @@
     .meta { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; color: var(--muted); font-size: 0.85rem; margin: 0; }
     .status { border: 1px solid var(--line); border-radius: 99px; padding: 0 0.6rem; }
     .sum { font-size: 1.1rem; }
+    .note { color: var(--muted); font-size: 0.85em; }
     .stamp { margin: 2rem 0 0; font: 0.85rem var(--mono); color: var(--muted); }
     .stamp b { color: var(--accent); letter-spacing: 0.04em; }
     footer { margin-top: 3rem; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--line); padding-top: 1rem; }
@@ -44,30 +45,26 @@
     <main>
       <p>#4471 merged every date report into one known issue. They are not one bug.</p>
       <p>The shared parser reads a day-first date month-first, so the day and the month trade places. On booking-v3 the form prints <code>MM/DD/YYYY</code> and then reads the tenant's day-first order. That is a different bug, and it only shows up on the form. A few reports move a booking by a day. The desk listed those ids in <code>oneDayMove</code>. They are not the swap, and #4471 still holds them.</p>
-      <p class="sum"><strong>412</strong> reports in #4471 · <strong>3</strong> problems</p>
+      <p class="sum"><strong>412</strong> reports in #4471 · <strong>2</strong> causes</p>
       <table>
-        <thead><tr><th>problem</th><th>reports</th><th>tenants</th><th>seen</th></tr></thead>
+        <thead><tr><th>cause</th><th>reports</th><th>tenants</th><th>seen</th></tr></thead>
         <tbody>
 <tr>
-        <td><code>parser</code> day-first dates read month-first</td>
-        <td>374</td>
+        <td><code>parser</code></td>
+        <td>379</td>
         <td>11</td>
         <td>2026-04-01 → 2026-10-04</td>
       </tr>
 <tr>
-        <td><code>hint</code> form hint says month-first, read day-first</td>
+        <td><code>hint</code></td>
         <td>33</td>
         <td>3</td>
         <td>2026-04-17 → 2026-09-22</td>
       </tr>
-<tr>
-        <td><code>one-day</code> moves by one day</td>
-        <td>5</td>
-        <td>5</td>
-        <td>2026-04-02 → 2026-10-04</td>
-      </tr>
         </tbody>
       </table>
+      <p class="note">5 reports read as a one-day move; filed under <code>parser</code>.</p>
+
       <p class="stamp">desk ref <b>DR-6GE4-V0CX</b></p>
     </main>
     <footer>Pages are written by people. Tables and charts are built from data at render time.</footer>
