@@ -4,13 +4,13 @@ title: '#4471 is more than one date problem'
 owner: Vitalii Martyniak
 status: closed
 reviewed: "2026-10-28"
-signature: Vitalii Martyniak
+signature: "v1.eyJzdWIiOiI0MDEiLCJhdWQiOiJjaGFsbGVuZ2U6d2hhdC1pdC1zaG93cyIsImlhdCI6MTc5MzE3NjMyOSwiZXhwIjoxNzkzMjYyNzI5fQ.2E9sWHAXMbx5qVfbojTpNWl_9Yg-E-etBejO1w4Il-M"
 ---
 
 <script>
   import ProblemTable from '#lib/kb/ProblemTable.svelte';
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
-  const signature = 'Vitalii Martyniak';
+  const signature = 'v1.eyJzdWIiOiI0MDEiLCJhdWQiOiJjaGFsbGVuZ2U6d2hhdC1pdC1zaG93cyIsImlhdCI6MTc5MzE3NjMyOSwiZXhwIjoxNzkzMjYyNzI5fQ.2E9sWHAXMbx5qVfbojTpNWl_9Yg-E-etBejO1w4Il-M';
 </script>
 
 #4471 merged every date report into one known issue. They are not one bug. The desk closed it on 5 October: parser fixed (`fix(dates): parse dd/mm for eu locales`), hint won't fix (booking-v3 form retired).
