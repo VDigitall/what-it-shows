@@ -38,12 +38,12 @@
       <h1>#4471 is more than one date problem</h1>
       <p class="meta">
         <span>owner <b>Vitalii Martyniak</b></span>
-        <span class="status filed">filed</span>
+        <span class="status closed">closed</span>
         <span>reviewed 2026-10-28 · 0 days ago</span>
       </p>
     </header>
     <main>
-      <p>#4471 merged every date report into one known issue. They are not one bug.</p>
+      <p>#4471 merged every date report into one known issue. They are not one bug. The desk closed it on 5 October: parser fixed (<code>fix(dates): parse dd/mm for eu locales</code>), hint won't fix (booking-v3 form retired).</p>
       <p>The shared parser reads a day-first date month-first, so the day and the month trade places. On booking-v3 the form prints <code>MM/DD/YYYY</code> and then reads the tenant's day-first order. That is a different bug, and it only shows up on the form. A few reports move a booking by a day. The desk listed those ids in <code>oneDayMove</code>. They are not the swap, and #4471 still holds them.</p>
       <p class="sum"><strong>412</strong> reports in #4471 · <strong>2</strong> causes</p>
       <table>

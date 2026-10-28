@@ -2,7 +2,7 @@
 layout: runbook
 title: '#4471 is more than one date problem'
 owner: Vitalii Martyniak
-status: filed
+status: closed
 reviewed: "2026-10-28"
 signature: Vitalii Martyniak
 ---
@@ -13,7 +13,7 @@ signature: Vitalii Martyniak
   const signature = 'Vitalii Martyniak';
 </script>
 
-#4471 merged every date report into one known issue. They are not one bug.
+#4471 merged every date report into one known issue. They are not one bug. The desk closed it on 5 October: parser fixed (`fix(dates): parse dd/mm for eu locales`), hint won't fix (booking-v3 form retired).
 
 The shared parser reads a day-first date month-first, so the day and the month trade places. On booking-v3 the form prints `MM/DD/YYYY` and then reads the tenant's day-first order. That is a different bug, and it only shows up on the form. A few reports move a booking by a day. The desk listed those ids in `oneDayMove`. They are not the swap, and #4471 still holds them.
 

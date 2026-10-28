@@ -2,8 +2,8 @@
 layout: runbook
 title: '#4471 · dates parse mm/dd in eu locales'
 owner: support desk
-status: known
-reviewed: 2026-09-30
+status: closed
+reviewed: "2026-10-05"
 ---
 
 <script>
@@ -15,11 +15,13 @@ reviewed: 2026-09-30
 Since April, people have told us their bookings land on the wrong day: a month flipped. By
 4 October the desk had **412 reports**.
 
-**Merged as one issue.** The parser reads dates month first, and our tenants write the day
-first. The fix is queued.
+**Closed 5 October.** Two problems, both real.
+
+- **parser** — fixed. `fix(dates): parse dd/mm for eu locales`
+- **hint** — won't fix. booking-v3 form retired.
 
 <Callout>
-Known. One issue, one fix queued.
+Closed. The parser fix does not cover the form hint.
 </Callout>
 
 ## What was merged
@@ -32,5 +34,5 @@ Known. One issue, one fix queued.
 
 ## Lessons
 
-- A big ticket is mostly one bug reported many times. Merge early, count once.
-- Write the page while the queue is still in your head.
+- #4471 held two causes. Closing it on the parser fix leaves the form hint open.
+- The form hint is won't-fix: booking-v3 is retired.
